@@ -1,0 +1,37 @@
+{
+  "click": {
+    "sounds": [
+      {
+        "name": "minecraft:ui.button.click",
+        "type": "event",
+        "volume": 0.25
+      }
+    ]
+  },
+  "tick": {
+    "sounds": [
+      {
+        "name": "minecraft:block.note_block.hat",
+        "type": "event",
+        "volume": 0.25
+      }
+    ]
+  },
+  "success": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.experience_orb.pickup",
+        "type": "event"
+      }
+    ]
+  },
+  "failure": {
+    "sounds": [
+      {
+        "name": "minecraft:block.note_block.bass",
+        "type": "event",
+        "pitch": 0.7
+      }
+    ]
+  }
+}

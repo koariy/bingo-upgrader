@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "bingo_upgrader:item/upgrader"
+  }
+}

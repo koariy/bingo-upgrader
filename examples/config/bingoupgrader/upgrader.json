@@ -1,0 +1,34 @@
+{
+  "houseEdge": 0.1,
+  "minChance": 5.0E-4,
+  "maxChance": 0.9,
+  "maxTargetValue": 100000.0,
+  "attemptsPerMinute": 30,
+  "requestsPerSecond": 10,
+  "sessionSeconds": 300,
+  "previewSeconds": 15,
+  "pityEnabled": false,
+  "allowUnknownTargets": false,
+  "pityAfterFailures": 10,
+  "pityStep": 0.002,
+  "pityMaxBonus": 0.05,
+  "blacklist": [
+    "minecraft:barrier",
+    "minecraft:bedrock",
+    "minecraft:chain_command_block",
+    "minecraft:command_block",
+    "minecraft:debug_stick",
+    "minecraft:dragon_egg",
+    "minecraft:jigsaw",
+    "minecraft:knowledge_book",
+    "minecraft:light",
+    "minecraft:repeating_command_block",
+    "minecraft:spawner",
+    "minecraft:structure_block",
+    "minecraft:structure_void",
+    "minecraft:trial_spawner"
+  ],
+  "blacklistTags": [
+    "minecraft:spawn_eggs"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "bingo_upgrader",
+  "version": "${version}",
+  "name": "Bingo Upgrader",
+  "description": "Bingo and a server-authoritative item upgrader with dynamic values, animated screens and a shared UI theme.",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.bingoupgrader.common.BingoUpgraderMod"
+    ],
+    "client": [
+      "dev.bingoupgrader.client.BingoUpgraderClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}",
+    "java": ">=25",
+    "fabric-api": ">=${fabric_version}"
+  },
+  "mixins": [
+    "bingo_upgrader.mixins.json"
+  ],
+  "icon": "assets/bingo_upgrader/icon.png"
+}

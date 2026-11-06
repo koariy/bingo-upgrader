@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bingo_upgrader:block/upgrader"
+    }
+  }
+}
