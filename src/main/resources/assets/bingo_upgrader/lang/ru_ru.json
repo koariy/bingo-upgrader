@@ -110,5 +110,13 @@
   "bingoupgrader.ui.settings_hint": "Правила применяются к следующему матчу",
   "bingoupgrader.ui.bingo_done": "Клетка отмечена",
   "bingoupgrader.ui.bingo_collect": "Найдите этот предмет",
-  "bingoupgrader.ui.unknown": "Неизвестная ценность: используется значение по умолчанию"
+  "bingoupgrader.ui.unknown": "Неизвестная ценность: используется значение по умолчанию",
+  "key.bingo_upgrader.toggle_hud": "Скрыть/показать таблицу бинго",
+  "bingoupgrader.bingo.difficulty": "Сложность: %s",
+  "bingoupgrader.bingo.hud_key_hint": "Бинд: Настройки → Управление",
+  "bingoupgrader.bingo.difficulty.easy": "Легко",
+  "bingoupgrader.bingo.difficulty.normal": "Обычно",
+  "bingoupgrader.bingo.difficulty.hard": "Сложно",
+  "bingoupgrader.bingo.difficulty.expert": "Эксперт",
+  "bingoupgrader.bingo.difficulty.custom": "Своя"
 }

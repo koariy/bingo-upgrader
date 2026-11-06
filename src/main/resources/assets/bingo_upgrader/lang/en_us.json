@@ -110,5 +110,13 @@
   "bingoupgrader.ui.settings_hint": "Rules apply to the next match",
   "bingoupgrader.ui.bingo_done": "Cell completed",
   "bingoupgrader.ui.bingo_collect": "Find this item",
-  "bingoupgrader.ui.unknown": "Unknown value: fallback is used"
+  "bingoupgrader.ui.unknown": "Unknown value: fallback is used",
+  "key.bingo_upgrader.toggle_hud": "Hide/show bingo HUD",
+  "bingoupgrader.bingo.difficulty": "Difficulty: %s",
+  "bingoupgrader.bingo.hud_key_hint": "Bind: Options → Controls",
+  "bingoupgrader.bingo.difficulty.easy": "Easy",
+  "bingoupgrader.bingo.difficulty.normal": "Normal",
+  "bingoupgrader.bingo.difficulty.hard": "Hard",
+  "bingoupgrader.bingo.difficulty.expert": "Expert",
+  "bingoupgrader.bingo.difficulty.custom": "Custom"
 }

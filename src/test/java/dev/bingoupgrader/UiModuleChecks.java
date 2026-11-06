@@ -14,6 +14,13 @@ public final class UiModuleChecks {
     private static int checks;
     private static void check(boolean b){checks++;if(!b)throw new AssertionError("UI check "+checks);}
     public static void run() throws Exception {
+        var motion=new ToggleAnimation();motion.setVisible(true,0);
+        check(motion.value(0)==0);check(Math.abs(motion.value(ToggleAnimation.DURATION/2)-.5)<1e-10);
+        check(motion.value(ToggleAnimation.DURATION)==1);
+        motion.setVisible(false,ToggleAnimation.DURATION);check(motion.value(ToggleAnimation.DURATION)==1);
+        long half=ToggleAnimation.DURATION+ToggleAnimation.DURATION/2;double atHalf=motion.value(half);
+        motion.setVisible(true,half);check(Math.abs(motion.value(half)-atHalf)<1e-10);check(motion.value(half+ToggleAnimation.DURATION)==1);
+        motion.reset(false);check(motion.value(half)==0);
         double previous=0;for(int i=0;i<=1000;i++){double v=VisualMath.ease(i/1000.0);check(v>=previous-1e-12&&v>=0&&v<=1);previous=v;}
         check(VisualMath.ease(0)==0&&VisualMath.ease(1)==1);
         for(double p:new double[]{.0005,.0036,.23,.5,.9,.9999})for(int i=0;i<1000;i++){

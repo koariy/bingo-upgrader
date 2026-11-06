@@ -22,7 +22,7 @@ public final class ClientUpgrader {
         ClientPlayNetworking.registerGlobalReceiver(Result.TYPE,(v,c)->{if(opened!=null&&opened.session().equals(v.session())){result=v;quoted=null;awaiting=false;UpgradeAnimation.begin(v);}});
         ClientPlayNetworking.registerGlobalReceiver(Rejected.TYPE,(v,c)->{if(v.requestId()==requested||v.requestId()==0){rejected=v;quoted=null;awaiting=false;}});
         ClientPlayConnectionEvents.DISCONNECT.register((h,c)->clear());ClientPlayConnectionEvents.INIT.register((h,c)->clear());
-        var category=KeyMapping.Category.register(Identifier.fromNamespaceAndPath("bingo_upgrader","controls"));
+        var category=dev.bingoupgrader.client.ui.UiKeys.CATEGORY;
         var key=KeyMappingHelper.registerKeyMapping(new KeyMapping("key.bingo_upgrader.open",org.lwjgl.glfw.GLFW.GLFW_KEY_U,category));
         ClientTickEvents.END_CLIENT_TICK.register(client->{UpgradeAnimation.tick();if(awaiting&&System.nanoTime()-started>10_000_000_000L){awaiting=false;rejected=new Rejected("stale");}
             while(key.consumeClick())if(client.player!=null&&client.gui.screen()==null&&ClientPlayNetworking.canSend(OpenRequest.TYPE))ClientPlayNetworking.send(new OpenRequest());

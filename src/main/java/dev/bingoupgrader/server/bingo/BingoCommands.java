@@ -22,6 +22,6 @@ public final class BingoCommands {
         .then(Commands.literal("settings").executes(c->call(c,(s,b)->BingoNetworking.sync(s.getPlayerOrException(),"settings")))
             .then(Commands.literal("reload").requires(BingoCommands::manager).executes(c->call(c,(s,b)->{b.reload();b.flush();})))
             .then(Commands.argument("field",StringArgumentType.word()).requires(BingoCommands::manager)
-                .suggests((c,b)->SharedSuggestionProvider.suggest(new String[]{"mode","goal","freeCenter","surrender","timeLimitSeconds"},b))
-                .then(Commands.argument("value",StringArgumentType.word()).executes(c->call(c,(s,b)->b.setting(s,StringArgumentType.getString(c,"field"),StringArgumentType.getString(c,"value")))))))));}
+                .suggests((c,b)->SharedSuggestionProvider.suggest(new String[]{"mode","difficulty","goal","freeCenter","surrender","timeLimitSeconds"},b))
+                .then(Commands.argument("value",StringArgumentType.word()).suggests((c,b)->SharedSuggestionProvider.suggest(dev.bingoupgrader.common.config.BingoConfig.difficulties(),b)).executes(c->call(c,(s,b)->b.setting(s,StringArgumentType.getString(c,"field"),StringArgumentType.getString(c,"value")))))))));}
 }

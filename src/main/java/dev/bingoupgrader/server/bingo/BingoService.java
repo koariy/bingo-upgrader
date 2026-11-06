@@ -71,6 +71,7 @@ public final class BingoService {
         requireManager(source);requireIdle();var cfg=BingoConfigStore.copy(config);
         switch(field) {
             case "mode"->cfg.mode=value;
+            case "difficulty"->cfg.applyDifficulty(value);
             case "goal"->cfg.goal=value;
             case "surrender"->cfg.surrender=bool(value);
             case "freeCenter"->{boolean free=bool(value);if(free!=cfg.freeCenter){var t=cfg.tiers.get(0);cfg.tiers.set(0,new BingoConfig.Tier(t.name(),t.min(),t.max(),t.count()+(free?-1:1)));cfg.freeCenter=free;}}

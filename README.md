@@ -1,4 +1,4 @@
-# Bingo Upgrader 1.0.0
+# Bingo Upgrader 1.0.1
 
 Полный Fabric-мод для **Minecraft Java Edition 26.2**: бинго 5×5,
 серверный апгрейдер предметов, динамическая система ценностей и единый
@@ -22,7 +22,7 @@
 
 ## Скачать мод
 
-[Скачать bingo-upgrader-1.0.0.jar](https://github.com/koariy/bingo-upgrader/raw/refs/heads/main/releases/bingo-upgrader-1.0.0.jar)
+[Скачать bingo-upgrader-1.0.1.jar](https://github.com/koariy/bingo-upgrader/raw/refs/heads/main/releases/bingo-upgrader-1.0.1.jar)
 
 Нужны Minecraft 26.2, Java 25, Fabric Loader и Fabric API. JAR положить в папку `mods`, не распаковывая.
 
@@ -46,11 +46,11 @@
 ./gradlew runServer
 ```
 
-Windows: `gradlew.bat build`. Готовый мод — `build/libs/bingo-upgrader-1.0.0.jar`.
+Windows: `gradlew.bat build`. Готовый мод — `build/libs/bingo-upgrader-1.0.1.jar`.
 `-sources.jar` содержит исходники, устанавливать его в mods не нужно.
 Скопировать обычный JAR и Fabric API в `mods` клиента и сервера с Fabric Loader.
 Для dedicated server самостоятельно прочитать и принять Minecraft EULA.
-Клиент и сервер должны использовать **одинаковую версию 1.0.0**: протокол
+Клиент и сервер должны использовать **одинаковую версию 1.0.1**: протокол
 превью расширен относительно промежуточных частей 1–4.
 
 Дополнительных игровых зависимостей нет. Gson/SLF4J берутся из Minecraft/Loader.
@@ -110,6 +110,11 @@ I — железный слиток, R — редстоун, C — верста�
 reload/dump требуют OP 2. Подробности сервера: [docs/UPGRADER.md](docs/UPGRADER.md).
 
 ## Бинго
+
+Новое в 1.0.1: выбор **easy / normal / hard / expert** в настройках матча;
+клавиша **B** скрывает и показывает HUD-карточку с плавной анимацией. Бинд
+переназначается в управлении, из настроек бинго можно открыть назначение клавиш.
+
 
 ```text
 /bingo settings
@@ -229,7 +234,7 @@ canvas и обратное преобразование pointer событий �
 ошибок среднего; отчёт `build/value-checks/balance.csv`.
 `valueChecks` также экспортирует defaults в `build/value-checks/examples/`.
 
-Итог: 13967 автоматических проверок + 12 млн симуляций; интерфейс и интеграция
+Итог: 14029 автоматических проверок + 12 млн симуляций; интерфейс и интеграция
 апгрейдер → бинго проверены в настоящем одиночном мире, включая сохранение/перезапуск.
 Снимки и границы проверки: [docs/VERIFICATION.md](docs/VERIFICATION.md).
 
@@ -246,4 +251,4 @@ canvas и обратное преобразование pointer событий �
 MouseButtonEvent/InputWithModifiers, HudElementRegistry, typed payload codecs,
 SavedDataType/Codec и Minecraft data components. Точные сигнатуры сверены по
 закреплённым JAR. История серверных решений сохранена в docs/UPGRADER.md и BINGO.md;
-этот README и CLIENT.md описывают финальный клиент 1.0.0.
+этот README и CLIENT.md описывают финальный клиент 1.0.1.

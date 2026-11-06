@@ -11,8 +11,8 @@ public final class BingoConfigStore {
         if(!Files.exists(file))save(new BingoConfig());
         if(Files.size(file)>1024*1024)throw new IOException("bingo.json exceeds 1 MiB");
         try(var reader=Files.newBufferedReader(file)) {
-            var cfg=ValueConfigStore.JSON.fromJson(reader,BingoConfig.class);if(cfg==null)throw new IllegalArgumentException("Empty config");cfg.validate();return cfg;
+            return BingoConfig.fromJson(com.google.gson.JsonParser.parseReader(reader).getAsJsonObject());
         } catch(RuntimeException ex){throw new IOException("Invalid bingo.json",ex);}
     }
-    public static void save(BingoConfig cfg) throws IOException {cfg.validate();ValueConfigStore.writeAtomic(ValueConfigStore.DIRECTORY.resolve("bingo.json"),ValueConfigStore.JSON.toJson(cfg));}
+    public static void save(BingoConfig cfg) throws IOException {cfg.validate();cfg.difficulty=cfg.displayedDifficulty();ValueConfigStore.writeAtomic(ValueConfigStore.DIRECTORY.resolve("bingo.json"),ValueConfigStore.JSON.toJson(cfg));}
 }

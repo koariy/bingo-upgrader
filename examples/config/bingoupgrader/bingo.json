@@ -1,6 +1,7 @@
 {
   "mode": "competitive",
   "goal": "line",
+  "difficulty": "normal",
   "freeCenter": false,
   "surrender": false,
   "timeLimitSeconds": 1800,

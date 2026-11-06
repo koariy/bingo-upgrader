@@ -34,6 +34,27 @@ public final class BingoModuleChecks {
         check(BingoRules.won(1023,"two_lines"));check(!BingoRules.won(1023,"full"));check(BingoRules.won(BingoRules.FULL,"full"));
         int diag=0,anti=0;for(int i=0;i<5;i++){diag|=1<<(i*6);anti|=1<<(4+i*4);}check(BingoRules.lines(diag)==1);check(BingoRules.lines(anti)==1);
         check(BingoRules.winningCells(31)==31);check(BingoRules.cells(BingoRules.CENTER,true)==0);
+        int[] previous=null;
+        for(String level:BingoConfig.difficulties())for(boolean freeCenter:new boolean[]{false,true}) {
+            var preset=new BingoConfig();preset.freeCenter=freeCenter;preset.applyDifficulty(level);preset.validate();
+            check(preset.displayedDifficulty().equals(level));check(preset.tiers.stream().mapToInt(BingoConfig.Tier::count).sum()==(freeCenter?24:25));
+        }
+        for(String level:BingoConfig.difficulties()){
+            int[] counts=BingoConfig.distribution(level,false);int prefix=0,oldPrefix=0;
+            if(previous!=null)for(int i=0;i<4;i++){prefix+=counts[i];oldPrefix+=previous[i];check(prefix<=oldPrefix);}
+            previous=counts;
+        }
+        var legacy=dev.bingoupgrader.common.bingo.BingoJson.JSON.fromJson("{}",BingoConfig.class);legacy.validate();check(legacy.difficulty.equals("normal"));
+        var custom=new BingoConfig();custom.tiers.set(0,new BingoConfig.Tier("easy",0,10,11));custom.tiers.set(1,new BingoConfig.Tier("medium",10,100,9));custom.validate();check(custom.displayedDifficulty().equals("custom"));
+        var easyConfig=BingoConfig.fromJson(com.google.gson.JsonParser.parseString("{\"difficulty\":\"easy\"}").getAsJsonObject());check(easyConfig.tiers.get(0).count()==20);
+        var freeConfig=BingoConfig.fromJson(com.google.gson.JsonParser.parseString("{\"difficulty\":\"expert\",\"freeCenter\":true}").getAsJsonObject());check(freeConfig.tiers.get(0).count()==1);
+        var oldConfig=dev.bingoupgrader.common.bingo.BingoJson.JSON.toJsonTree(custom).getAsJsonObject();oldConfig.remove("difficulty");
+        var preserved=BingoConfig.fromJson(oldConfig);check(preserved.difficulty.equals("custom"));check(preserved.tiers.get(0).count()==11);
+        check(!BingoGenerator.fitsDifficulty("easy","minecraft:end_stone"));
+        check(!BingoGenerator.fitsDifficulty("easy","minecraft:warped_planks"));
+        check(!BingoGenerator.fitsDifficulty("easy","minecraft:nether_bricks"));
+        check(BingoGenerator.fitsDifficulty("easy","minecraft:oak_planks"));
+        check(BingoGenerator.fitsDifficulty("hard","minecraft:end_stone"));
         var cfg=new BingoConfig();cfg.validate();var entries=new TreeMap<String,ValueTable.Entry>();
         for(int tier=0;tier<4;tier++)for(int i=0;i<30;i++)entries.put("test:t"+tier+"_"+i,new ValueTable.Entry(new double[]{1,15,250,1500}[tier],"base",false));
         entries.put("test:unknown",new ValueTable.Entry(1,"unknown",false));entries.put("test:blocked",new ValueTable.Entry(1,"base",true));
@@ -42,6 +63,11 @@ public final class BingoModuleChecks {
             var card=BingoGenerator.generate(cfg,table,id->!id.equals("test:t0_0"),new Random(seed));
             check(card.size()==25 && new HashSet<>(card).size()==25);check(!card.contains("test:unknown")&&!card.contains("test:blocked")&&!card.contains("test:t0_0"));
             for(var tier:cfg.tiers)check(card.stream().filter(id->entries.get(id).value()>=tier.min()&&entries.get(id).value()<tier.max()).count()==tier.count());
+        }
+        for(String difficulty:BingoConfig.difficulties()){
+            var preset=new BingoConfig();preset.applyDifficulty(difficulty);
+            var generated=BingoGenerator.generate(preset,table,id->true,new Random(101));
+            for(var band:preset.tiers)check(generated.stream().filter(id->entries.get(id).value()>=band.min()&&entries.get(id).value()<band.max()).count()==band.count());
         }
         cfg.freeCenter=true;cfg.tiers.set(0,new BingoConfig.Tier("easy",0,10,9));var free=BingoGenerator.generate(cfg,table,id->true,new Random(1));check(free.size()==25&&free.get(12).isEmpty());
         try{BingoGenerator.generate(cfg,table,id->false,new Random());throw new AssertionError("Undersized pool");}catch(IllegalArgumentException expected){checks++;}
