@@ -6,6 +6,20 @@
 
 ![Апгрейдер в Minecraft](docs/screenshots/upgrader-ru.png)
 
+## Демонстрация бинго
+
+### Игровая карточка 5×5
+
+![Карточка бинго во время матча](docs/screenshots/bingo-ru.png)
+
+### Настройки бинго
+
+![Настройки режима, победы и HUD](docs/screenshots/settings-ru.png)
+
+### HUD в игровом мире
+
+![Настройка положения и масштаба HUD бинго](docs/screenshots/hud-editor-ru.png)
+
 ## Скачать мод
 
 [Скачать bingo-upgrader-1.0.0.jar](https://github.com/koariy/bingo-upgrader/raw/refs/heads/main/releases/bingo-upgrader-1.0.0.jar)
