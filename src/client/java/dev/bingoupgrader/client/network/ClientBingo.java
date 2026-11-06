@@ -19,7 +19,7 @@ public final class ClientBingo {
     private ClientBingo() { }
     public static void register() {
         preferences=BingoClientConfig.load();
-        var toggle=net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper.registerKeyMapping(new net.minecraft.client.KeyMapping("key.bingo_upgrader.toggle_hud",org.lwjgl.glfw.GLFW.GLFW_KEY_B,dev.bingoupgrader.client.ui.UiKeys.CATEGORY));
+        var toggle=net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper.registerKeyMapping(new net.minecraft.client.KeyMapping("key.bingo_upgrader.toggle_hud",org.lwjgl.glfw.GLFW.GLFW_KEY_TAB,dev.bingoupgrader.client.ui.UiKeys.CATEGORY));
         net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.END_CLIENT_TICK.register(client->{
             while(toggle.consumeClick())if(client.player!=null&&client.gui.screen()==null)toggleHud();
         });
