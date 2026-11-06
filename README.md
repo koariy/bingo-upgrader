@@ -8,7 +8,7 @@
 
 ## Скачать мод
 
-[Скачать bingo-upgrader-1.0.0.jar](https://github.com/koariy/bingo-upgrader/releases/download/v1.0.0/bingo-upgrader-1.0.0.jar)
+[Скачать bingo-upgrader-1.0.0.jar](https://github.com/koariy/bingo-upgrader/raw/refs/heads/main/releases/bingo-upgrader-1.0.0.jar)
 
 Нужны Minecraft 26.2, Java 25, Fabric Loader и Fabric API. JAR положить в папку `mods`, не распаковывая.
 
